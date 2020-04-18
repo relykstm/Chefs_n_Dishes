@@ -1,0 +1,46 @@
+@using Chefs_n_Dishes.Models
+@model List<Chef>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home and View Chefs</title>
+</head>
+<body>
+    <h1>Chefs | <a href="dishes">Dishes</a></h1>
+    <br/>
+    <a href="new">Add A Chef</a>
+    <br/>
+    <h2>Check out our roster of Chefs!</h2>
+    <hr>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Age</th>
+            <th># of Dishes</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            @{
+                foreach(var chef in Model)
+                {
+                    <tr>
+                        <td>@chef.FirstName @chef.LastName</td>
+                        <td>
+                            @{
+                                var date=DateTime.Now.Date.Subtract(@chef.Dob);
+                                int years = (int)date.TotalDays/365;
+                                @Html.DisplayTextFor(model=>years);
+                            }
+                        </td>
+                        <td>@chef.Dishes.Count</td>
+                        <td><a href="/delete/@chef.ChefId">Delete</a></td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</body>
+</html>

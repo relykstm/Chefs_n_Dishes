@@ -1,0 +1,41 @@
+@using Chefs_n_Dishes.Models
+@model List<Dish>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Dishes</title>
+</head>
+<body>
+    <h1><a href="/">Chefs</a> | Dishes</h1>
+    <br/>
+    <a href="dishes/new">Add A Dish</a>
+    <br/>
+    <h2>Yum, take a look at our tasty dishes!</h2>
+    <br/>
+    <hr>
+    <br/>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Chef</th>
+            <th>Tastiness</th>
+            <th>Calories</th>
+        </thead>
+        <tbody>
+
+                @foreach(var dish in @Model)
+                {
+                    <tr>
+                        <td>@dish.Name</td>
+                        <td>@dish.Chef.FirstName @dish.Chef.LastName</td>
+                        <td>@dish.Tastiness</td>
+                        <td>@dish.Calories</td>
+                    </tr>
+                }
+            
+        </tbody>
+    </table>
+</body>
+</html>
